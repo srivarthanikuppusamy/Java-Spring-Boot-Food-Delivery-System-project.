@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberBite Delivery System</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="logo-icon">⚡</span>
+      <h2>CyberBite Express</h2>
+    </div>
+    <div class="wallet-badge">
+      <span class="wallet-label">WALLET BALANCE</span>
+      <span class="wallet-amount" id="walletBalance">₹1,000.00</span>
+    </div>
+  </header>
+
+  <div class="grid-layout">
+    <!-- Left Column: Menu Cards -->
+    <section class="menu-section">
+      <h3>Select Menu Item</h3>
+      <div class="menu-grid">
+        <div class="menu-card active" data-item="Paneer Butter Masala" data-price="220" onclick="selectItem('Paneer Butter Masala', 220, this)">
+          <div class="card-header">
+            <span class="item-title">Paneer Butter Masala</span>
+            <span class="item-tag">₹220</span>
+          </div>
+          <div class="card-footer">
+            <span class="stock-badge" id="stock-Paneer Butter Masala">Loading stock...</span>
+          </div>
+        </div>
+
+        <div class="menu-card" data-item="Chicken Biryani" data-price="280" onclick="selectItem('Chicken Biryani', 280, this)">
+          <div class="card-header">
+            <span class="item-title">Chicken Biryani</span>
+            <span class="item-tag">₹280</span>
+          </div>
+          <div class="card-footer">
+            <span class="stock-badge" id="stock-Chicken Biryani">Loading stock...</span>
+          </div>
+        </div>
+
+        <div class="menu-card" data-item="Garlic Naan Combo" data-price="150" onclick="selectItem('Garlic Naan Combo', 150, this)">
+          <div class="card-header">
+            <span class="item-title">Garlic Naan Combo</span>
+            <span class="item-tag">₹150</span>
+          </div>
+          <div class="card-footer">
+            <span class="stock-badge" id="stock-Garlic Naan Combo">Loading stock...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Interactive Form -->
+    <section class="checkout-section">
+      <h3>Order Configuration</h3>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Selected Item</label>
+          <input type="text" id="item" value="Paneer Butter Masala" readonly>
+        </div>
+        <div class="form-group half">
+          <label>Unit Price</label>
+          <input type="text" id="unitPriceDisplay" value="₹220" readonly>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="quantity">Quantity</label>
+          <div class="quantity-picker">
+            <button class="qty-btn" onclick="adjustQuantity(-1)">-</button>
+            <input type="number" id="quantity" value="1" min="1" oninput="recalculateTotal()">
+            <button class="qty-btn" onclick="adjustQuantity(1)">+</button>
+          </div>
+        </div>
+        <div class="form-group half">
+          <label for="coupon">Coupon Code</label>
+          <input type="text" id="coupon" value="SAVE50" oninput="recalculateTotal()">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" value="560001">
+        </div>
+        <div class="form-group half">
+          <label for="payment">Payment Offered (₹)</label>
+          <input type="number" id="payment" value="170">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address</label>
+        <input type="text" id="address" value="123 MG Road, Sector 4, Indiranagar">
+      </div>
+
+      <!-- Summary Bar -->
+      <div class="summary-card">
+        <div class="summary-line"><span>Subtotal:</span><span id="summarySubtotal">₹220.00</span></div>
+        <div class="summary-line text-success"><span>Discount (SAVE50):</span><span id="summaryDiscount">-₹50.00</span></div>
+        <div class="summary-line total-line"><span>Total Payable:</span><span id="summaryTotal">₹170.00</span></div>
+      </div>
+
+      <button class="checkout-btn" onclick="placeOrder()">
+        <span>Place Order Now</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <div id="statusBox" class="alert-box"></div>
+    </section>
+  </div>   
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
